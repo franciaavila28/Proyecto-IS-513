@@ -1,0 +1,39 @@
+BNF Lenguaje de Programación: Melany
+
+<lenguaje_de_programacion> ::= 'Inicio' <declaracion><sentencia> 'Fin'
+<declaracion> ::= <variable>
+<variable> ::= 'definir '<identificador><tipo_dato>
+<identificador> ::= <letra_mayuscula>|<idenficador><letra_mayuscula>|<identificador><letra_minuscula>|<identificador><numero>
+<letra_mayuscula> ::= 'A'|'B'|'C'|'D'|'E'|'F'|'G'|'H'|'I'|'J'|'K'|'L'|'M'|'N'|'Ñ'|'O'|'P'|'Q'|'R'|'S'|'T'|'U'|'V'|'W'|'X'|'Y'|'Z'
+<letra_minuscula> ::= 'a'|'b'|'c'|'d'|'e'|'f'|'g'|'h'|'i'|j'|'k'|'l'|'m'|'n'|'ñ'|'o'|'p'|'q'|'r'|'s'|'t'|'u'|'v'|'w'|'x'|'y'|'z'
+<numero> ::= <digito>|<numero><digito>
+<digito> ::= '0'|'1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9'
+<tipo_dato> ::= 'entero'|'cadena'|decimal'
+<entero> ::= <numero>|<signo><numero>
+<decimal> ::= <numero>'.'<numero>|<signo><numero>'.'<numero>
+<signo> ::= '-'|'+'
+<cadena> ::= '"'<caracter>'"'
+<caracter> ::= <letra_mayuscula>|<letra_minuscula>|<entero>|<decimal>|<caracter><letra_mayuscula>|<caracter><letra_minuscula>|<caracter><entero>|<caracter><decimal>
+<operador_aritmetico> ::= '+'|'-'|'*'|'/'|'%'
+<operador_relacional> ::= '>'|'<'|'>='|'<='|'=='|'!='
+<operador_logico> ::= '&&'|'||'|'!'
+<asignacion> ::= <variable>'<-'<expresion_matematica>|<variable>'<-'<cadena>|<variable>'<-'<entero>|<variable>'<-'<decimal>
+<expresion_matematica> ::= <entero><operador_aritmetico><entero>|<decimal><operador_aritmetico><decimal>|<entero><operador_aritmetico><decimal>|<decimal><operador_aritmetico><entero>
+			   |<expresion_matematica><entero><operador_aritmetico><entero>|<expresion_matematica><decimal><operador_aritmetico><decimal>|<expresion_matematica><entero><operador_aritmetico><decimal>
+			   |<expresion_matematica><decimal><operador_aritmetico><entero>
+<condicion> ::= <condicion_expmath>|<condicion_identificador>|<condicion_entero>|<condicion_decimal>|<condicion_expmath><operador_logico><condicion>|<condicion_identificador><operador_logico>|<condicion>
+		|<condicion_entero><operador_logico><condicion>|<condicion_cadena><operador_logico><condicion>|<condicion_decimal><operador_logico><condicion>
+<condicion_expmath> ::= <identificador><operador_relacional><expresion_matematica>
+<condicion_identificador> ::= <identificador><operador_relacional><identificador>
+<condicion_entero> ::= <identificador><operador_relacional><entero>
+<condicion_cadena> ::= <identificador><operador_relacional><cadena>
+<condicion_decimal> ::= <identificador><operador_relacional><decimal>
+<seleccion> ::= 'si ('<condicion>') hacer '<sentencia>' finsi'|'si ('<condicion>') hacer '<sentencia>' sino '<sentencia>' finsi'
+<ciclo_mientras> ::= 'mientras ('<condicion>') repetir '<sentencias>
+<ciclo_repetir> ::= 'repetir '<sentencias>' hasta ('<condicion>')'
+<sentencia> ::= <declaracion>|<asignacion>|expresion_matematica>|<bloque>|<sentencia><declaracion>|<sentencia><asignacion>|<sentencia><expresion_matematica>|<sentencia><bloque>
+<bloque> ::= <seleccion>|<ciclo_mientras>|<ciclo_repetir>
+<lectura> ::= 'leer '<identificador>
+<impresion> ::= 'imprimir '<identificador>|'imprimir '<cadena>
+<puntero> ::= 'cursor '<punto>
+<punto> ::= <entero>','<entero>
