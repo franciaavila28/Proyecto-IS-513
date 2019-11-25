@@ -36,7 +36,7 @@ BNF Lenguaje de Programación: Melany
 
 <operador_logico> ::= '&&'|'||'|'!'
 
-<asignacion> ::= <variable>'<-'<expresion_matematica>|<variable>'<-'<cadena>|<variable>'<-'<entero>|<variable>'<-'<decimal>
+<asignacion> ::= <identificador>'<-'<expresion_matematica>|<identificador>'<-'<cadena>|<identificador>'<-'<entero>|<identificador>'<-'<decimal>
 
 <expresion_matematica> ::= <entero><operador_aritmetico><entero>|<decimal><operador_aritmetico><decimal>|<entero><operador_aritmetico><decimal>|<decimal><operador_aritmetico><entero>|<expresion_matematica><entero><operador_aritmetico><entero>|<expresion_matematica><decimal><operador_aritmetico><decimal>|<expresion_matematica><entero><operador_aritmetico><decimal>|<expresion_matematica><decimal><operador_aritmetico><entero>
 
@@ -54,11 +54,11 @@ BNF Lenguaje de Programación: Melany
 
 <seleccion> ::= 'si ('<condicion>') hacer '<sentencia>' finsi'|'si ('<condicion>') hacer '<sentencia>' sino '<sentencia>' finsi'
 
-<ciclo_mientras> ::= 'mientras ('<condicion>') repetir '<sentencias>
+<ciclo_mientras> ::= 'mientras ('<condicion>')'<sentencias>'repetir'
 
 <ciclo_repetir> ::= 'repetir '<sentencias>' hasta ('<condicion>')'
 
-<sentencia> ::= <declaracion>|<asignacion>|expresion_matematica>|<bloque>|<sentencia><declaracion>|<sentencia><asignacion>|<sentencia><expresion_matematica>|<sentencia><bloque>
+<sentencia> ::= <declaracion>|<asignacion>|expresion_matematica>|<bloque>|lectura|impresion|puntero|<sentencia><declaracion>|<sentencia><asignacion>|<sentencia><expresion_matematica>|<sentencia><bloque>|<sentencia><lectura>|<sentencia><impresion>|<sentencia><puntero>
 
 <bloque> ::= <seleccion>|<ciclo_mientras>|<ciclo_repetir>
 
@@ -69,3 +69,21 @@ BNF Lenguaje de Programación: Melany
 <puntero> ::= 'cursor '<punto>
 
 <punto> ::= <entero>','<entero>
+
+EJEMPLO DE PRUEBA 1 EN BNF:
+definir Automovil1 cadena
+definir Automovil2 cadena
+Automovil1 <- "Toyota"
+Automovil2 <- "Volkswagen"
+si (Automovil1 !"Volkswagen" && Automovil2 !"Toyota") hacer imprimir Automvil1 sino imprimir Automovil2 finsi
+
+EJEMPLO DE PRUEBA 2 EN BNF:
+definir GalletaVainilla entero
+definir GalletaChocolate entero
+definir JugoNaranja entero
+definir TotalGalletas entero
+leer GalletaVainilla
+leer GalletaChocolate
+leer JugoNaranja
+TotalGalletas <- GalletaVainilla + GalletaChocolate
+mientras (TotalGalletas < 10 && JugoNaranja > 0) GalletaVainilla - 1 repetir 
