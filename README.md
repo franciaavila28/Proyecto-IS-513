@@ -1,2 +1,5 @@
 # Proyecto-IS-513
-Lenguajes de Programación
+
+Integrantes: 
+Francia Avila  20171000341
+Victor Bueso   20171000168
