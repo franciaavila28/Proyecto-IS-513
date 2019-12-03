@@ -4,20 +4,16 @@
 int main(){
     FILE *archivo;
     char caracter, estado;
-    char palabra_reservada[][50] ={"si","sino","hacer","finsi","definir","mientras","repetir","hasta","leer","imprimir","cursor"};
-    char tipo_dato[][50] ={"entero","decimal","cadena"};
-    enum tokens {
-        Tkn_identificador, Tkn_tipo_dato, Tkn_lectura, Tkn_impresion, Tkn_puntero, Tkn_decimal, Tkn_entero, Tkn_operador_relacional,
-        Tkn_operador_aritmetico, Tkn_operador_logico, Tkn_letra_mayuscula, Tkn_letra_minuscula, Tkn_signo, Tkn_coma
-    };
-
+    char palabra_reservada[][30] ={"si","sino","hacer","finsi","definir","mientras","repetir","hasta","leer","imprimir","cursor"};
+    char tipo_dato[][10] ={"entero","decimal","cadena"};
+    char *token;
     estado=0;
-    archivo = fopen("entrada.txt","r");
 
-    if (archivo=NULL){
-        printf("No se encuentra el archivo");
+    archivo = fopen("entrada.prg","r");
+    if (archivo==NULL){
+        fputs("No se encuentra el archivo",stderr);
+        exit(1);
     }
-    else {
          while ((caracter=fgetc(archivo))!=EOF) {
             printf("%c",caracter);
             switch(caracter){
@@ -212,53 +208,59 @@ int main(){
                         estado=34;
                     }
                 break;
-                case 35: //tokens
-                    if (estado==5 || estado==27 || estado==42){
-                        return Tkn_identificador;
-                    }
-                    else if (estado==6){
-                        return Tkn_tipo_dato;
-                    }
-                    else if (estado==36){
-                        return Tkn_lectura;
-                    }
-                    else if (estado==37){
-                        return Tkn_impresion;
-                    }
-                    else if (estado==38){
-                        return Tkn_puntero;
-                    }
-                    else if (estado==13 || estado==31){
-                        return Tkn_decimal;
-                    }
-                    else if (estado==12 || estado==30 || estado==40){
-                        return Tkn_entero;
-                    }
-                    else if (estado==28){
-                        return Tkn_operador_relacional;
-                    }
-                    else if (estado==26){
-                        return Tkn_operador_aritmetico;
-                    }
-                    else if (estado==25){
-                        return Tkn_operador_logico;
-                    }
-                    else if (estado==14){
-                        return Tkn_letra_mayuscula;
-                    }
-                    else if (estado==15){
-                        return Tkn_letra_minuscula;
-                    }
-                    else if (estado==32){
-                        return Tkn_signo;
-                    }
-                    else if (estado==34 || estado==41){
-                        return Tkn_coma;
-                    }
-                break;
             }
+
+
+            if (estado==5 || estado==27 || estado==42){
+                token="Tkn_identificador";
+            }
+            if (estado==6){
+                token="Tkn_tipo_dato";
+            }
+            if (estado==36){
+                token="Tkn_lectura";
+            }
+            if (estado==37){
+                token="Tkn_impresion";
+            }
+            if (estado==38){
+                 token="Tkn_puntero";
+            }
+            if (estado==13 || estado==31){
+                 token="Tkn_decimal";
+            }
+            if (estado==12 || estado==30 || estado==40){
+                token="Tkn_entero";
+            }
+            if (estado==28){
+                token="Tkn_operador_relacional";
+            }
+            if (estado==26){
+                token="Tkn_operador_aritmetico";
+            }
+            if (estado==25){
+                token="Tkn_operador_logico";
+            }
+            if (estado==14){
+                token="Tkn_letra_mayuscula";
+            }
+            if (estado==15){
+                token="Tkn_letra_minuscula";
+            }
+            if (estado==32){
+                token="Tkn_signo";
+            }
+            if (estado==34 || estado==41){
+                token="Tkn_coma";
+            }
+
         }
-    }
+
     fclose(archivo);
     return 0;
 }
+
+    
+                
+                  
+               
